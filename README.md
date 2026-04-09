@@ -1,75 +1,99 @@
-# React + TypeScript + Vite
+# Iluro Garden 3D
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern plant discovery experience built with React, TypeScript, and Three.js.  
+Iluro Garden 3D combines a polished storefront-style UI with interactive 3D plant previews, category browsing, and a lightweight cart flow.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Interactive 3D plant rendering using `@react-three/fiber` + `@react-three/drei`
+- Plant discovery by category with dedicated category pages
+- Individual plant detail pages with care information and related plants
+- Search suggestions with quick navigation to plant pages
+- Zustand-powered cart with add, remove, clear, and discounted pricing
+- Styled with MUI and a custom dark garden theme
+- Client-side routing with React Router
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- React 19
+- TypeScript
+- Vite
+- Material UI (MUI)
+- Three.js ecosystem (`three`, `@react-three/fiber`, `@react-three/drei`)
+- Zustand
+- React Router
+- ESLint + Biome
 
-Note: This will impact Vite dev & build performances.
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 20+ recommended
+- npm 10+ (or compatible)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run in Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Then open the local URL shown in your terminal (usually `http://localhost:5173`).
+
+### Production Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Available Scripts
+
+- `npm run dev` - Start Vite dev server
+- `npm run build` - Type-check and create production build
+- `npm run preview` - Preview built app locally
+- `npm run lint` - Run ESLint
+- `npm run format` - Format project files with Biome
+
+## App Routes
+
+- `/` - Home page (categories, featured plants, offers)
+- `/about` - About page
+- `/cart` - Cart page
+- `/category/:categoryId` - Category listing page
+- `/plant/:plantSlug` - Plant detail page
+
+## Project Structure
+
+```text
+src/
+	components/      Reusable UI and 3D presentation components
+	constants/       Plant data, categories, and asset URL helpers
+	pages/           Route-level page components
+	store/           Zustand store for cart state
+	utils/           Helper utilities (for example, slug generation)
+```
+
+## Data and Assets
+
+- Plant catalog is defined in `src/constants/plantsData.ts` and adapted into card models.
+- 3D models and images are loaded from public blob URLs configured in `src/constants/assetUrls.ts`.
+
+## Notes
+
+- If remote model assets are unavailable, the UI shows graceful loading/error states for 3D panels.
+- Cart state is currently in-memory (reset on page refresh).
+
+## License
+
+No license has been specified yet. Add a `LICENSE` file if you plan to publish this repository publicly.

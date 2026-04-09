@@ -2,6 +2,7 @@
 	"name": "iluro-garden-3d",
 	"private": true,
 	"version": "0.0.0",
+	"author": "Antonio Gordillo Esteban",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
