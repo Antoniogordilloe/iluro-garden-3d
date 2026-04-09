@@ -32,29 +32,18 @@ export const Navbar = () => {
 						className="inline-flex items-center gap-1.5 font-medium text-[var(--color-text-invert)] no-underline transition-colors duration-200 hover:text-[var(--color-accent)]"
 					>
 						<img
-							src={personIcon}
-							alt="Profile"
-							className="h-[18px] w-[18px] object-contain"
-						/>
-						Account
-					</a>
-					<a
-						href="#"
-						className="inline-flex items-center gap-1.5 font-medium text-[var(--color-text-invert)] no-underline transition-colors duration-200 hover:text-[var(--color-accent)]"
-					>
-						<img
 							src={basketIcon}
 							alt="Basket"
 							className="h-[18px] w-[18px] object-contain"
 						/>
 						Cart
 					</a>
-					<a
-						href="#"
+					<Link
+						to="/about"
 						className="inline-flex items-center gap-1.5 font-medium text-[var(--color-text-invert)] no-underline transition-colors duration-200 hover:text-[var(--color-accent)]"
 					>
 						About
-					</a>
+					</Link>
 				</div>
 
 				<div className="flex justify-center gap-4">

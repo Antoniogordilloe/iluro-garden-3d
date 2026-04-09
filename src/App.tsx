@@ -5,6 +5,7 @@ import { FeaturedPlants } from "./components/FeaturedPlants";
 import { RandomOffers } from "./components/RandomOffers";
 import { CategoryPage } from "./pages/CategoryPage";
 import { PlantPage } from "./pages/PlantPage";
+import { AboutPage } from "./pages/AboutPage";
 
 const HomePage = () => {
 	return (
@@ -34,6 +35,7 @@ function App() {
 		<div className="min-h-screen text-(--color-text-invert)">
 			<Header />
 			<Routes>
+				<Route path="/about" element={<AboutPage />} />
 				<Route path="/category/:categoryId" element={<CategoryPage />} />
 				<Route path="/plant/:plantSlug" element={<PlantPage />} />
 				<Route path="/" element={<HomePage />} />
