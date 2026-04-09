@@ -1,7 +1,7 @@
 import { Box, Button, Chip, Paper, Stack, Typography } from "@mui/material";
 import type { PlantCard } from "../../constants/plantCards";
 import { PlantRenderer } from "../PlantRenderer";
-import { useCartStore } from "../../store/cartStore";
+import { getDiscountedPrice, useCartStore } from "../../store/cartStore";
 import { toPlantSlug } from "../../utils/plantSlug";
 
 type PlantHeroProps = {
@@ -9,12 +9,19 @@ type PlantHeroProps = {
 	categoryTitle: string;
 };
 
+const priceFormatter = new Intl.NumberFormat("en-US", {
+	style: "currency",
+	currency: "USD",
+});
+
 export const PlantHero = ({ plant, categoryTitle }: PlantHeroProps) => {
 	const plantSlug = toPlantSlug(plant.name);
 	const addToCart = useCartStore((state) => state.addToCart);
 	const isInCart = useCartStore((state) =>
 		state.items.some((item) => item.slug === plantSlug),
 	);
+	const hasDiscount = typeof plant.discount === "number" && plant.discount > 0;
+	const discountedPrice = getDiscountedPrice(plant);
 
 	return (
 		<Box component="section" sx={{ mb: 4, display: "flex", gap: 3, alignItems: "stretch", flexDirection: { xs: "column", lg: "row" } }}>
@@ -43,6 +50,17 @@ export const PlantHero = ({ plant, categoryTitle }: PlantHeroProps) => {
 					<Typography variant="body1" sx={{ color: "text.secondary", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: 760 }}>
 						A healthy, happy {plant.name} starts with the right light, watering rhythm, and placement. Use this care profile as your quick guide.
 					</Typography>
+					<Stack direction="row" spacing={1.2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
+						{hasDiscount ? <Chip label={`-${plant.discount}%`} color="success" /> : null}
+						<Typography variant="h4" color="primary.light">
+							{priceFormatter.format(discountedPrice)}
+						</Typography>
+						{hasDiscount ? (
+							<Typography variant="body1" color="text.secondary" sx={{ textDecoration: "line-through" }}>
+								{priceFormatter.format(plant.price)}
+							</Typography>
+						) : null}
+					</Stack>
 					<Box>
 						<Button variant="contained" color="primary" onClick={() => addToCart(plant)} disabled={isInCart}>
 							{isInCart ? "In cart" : "Add to cart"}
