@@ -1,13 +1,8 @@
 import { alpha } from "@mui/material/styles";
 import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
-const generatedGardenImages = [
-	"/generated-gardens/garden-01.svg",
-	"/generated-gardens/garden-02.svg",
-	"/generated-gardens/garden-03.svg",
-	"/generated-gardens/garden-04.svg",
-	"/generated-gardens/garden-05.svg",
-	"/generated-gardens/garden-06.svg",
-];
+import { GENERATED_GARDEN_IMAGE_URLS } from "../../constants/assetUrls";
+
+const generatedGardenImages = [...GENERATED_GARDEN_IMAGE_URLS];
 
 const pickRandomGardenImages = (count: number) => {
 	const shuffled = [...generatedGardenImages];

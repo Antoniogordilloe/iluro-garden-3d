@@ -3,6 +3,7 @@ import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
 import WaterDropOutlinedIcon from "@mui/icons-material/WaterDropOutlined";
 import {
 	Box,
+	Button,
 	CardActionArea,
 	Chip,
 	Divider,
@@ -15,6 +16,7 @@ import { PlantRenderer } from "../PlantRenderer";
 import type { PlantCard as PlantCardData } from "../../constants/plantCards";
 import { plantCategories } from "../../constants/plantCategories";
 import { toPlantSlug } from "../../utils/plantSlug";
+import { useCartStore } from "../../store/cartStore";
 
 type CardProps = {
 	card: PlantCardData;
@@ -26,6 +28,11 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
 });
 
 export const Card = ({ card }: CardProps) => {
+	const plantSlug = toPlantSlug(card.name);
+	const addToCart = useCartStore((state) => state.addToCart);
+	const isInCart = useCartStore((state) =>
+		state.items.some((item) => item.slug === plantSlug),
+	);
 	const categoryTitle =
 		plantCategories.find((c) => c.id === card.category)?.title ?? card.category;
 	const hasDiscount = typeof card.discount === "number" && card.discount > 0;
@@ -37,8 +44,12 @@ export const Card = ({ card }: CardProps) => {
 		{ label: "Pet Safe", value: card.petSafe, icon: <PetsOutlinedIcon fontSize="small" /> },
 	];
 
+	const handleAddToCart = () => {
+		addToCart(card);
+	};
+
 	return (
-		<MuiCard sx={{ height: 1, width: "100%", maxWidth: 560, justifySelf: "center" }}>
+		<MuiCard sx={{ height: 1, width: "100%", maxWidth: 560, justifySelf: "center", display: "flex", flexDirection: "column" }}>
 			<CardActionArea component={Link} to={`/plant/${toPlantSlug(card.name)}`} sx={{ height: 1 }}>
 				<Stack spacing={2} sx={{ p: 2.5, height: 1 }}>
 					<Box sx={{ position: "relative" }}>
@@ -87,6 +98,12 @@ export const Card = ({ card }: CardProps) => {
 					</Stack>
 				</Stack>
 			</CardActionArea>
+			<Divider flexItem />
+			<Box sx={{ p: 2, pt: 1.5 }}>
+				<Button variant="contained" color="primary" fullWidth onClick={handleAddToCart} disabled={isInCart}>
+					{isInCart ? "In cart" : "Add to cart"}
+				</Button>
+			</Box>
 		</MuiCard>
 	);
 };

@@ -2,6 +2,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import {
 	AppBar,
+	Badge,
 	Box,
 	Button,
 	Container,
@@ -12,11 +13,12 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import { SearchBar } from "../SearchBar";
 import { PlantRenderer } from "../PlantRenderer";
-
-const navbarLogoPath =
-	"https://s29mp5al263ezccl.public.blob.vercel-storage.com/models/logo.glb";
+import { useCartStore } from "../../store/cartStore";
+import { NAVBAR_LOGO_MODEL_URL } from "../../constants/assetUrls";
 
 export const Navbar = () => {
+	const cartCount = useCartStore((state) => state.items.length);
+
 	return (
 		<AppBar position="static">
 			<Container maxWidth={false} sx={{ maxWidth: 1600 }}>
@@ -30,7 +32,7 @@ export const Navbar = () => {
 					>
 						<Box sx={{ width: 44, height: 44, overflow: "hidden", borderRadius: "50%", flexShrink: 0 }}>
 							<PlantRenderer
-								modelPath={navbarLogoPath}
+								modelPath={NAVBAR_LOGO_MODEL_URL}
 								sx={{ width: 1, height: 1, minHeight: 0 }}
 								rotationSpeed={0.5}
 								cameraPosition={[0.05, 3, 0.05]}
@@ -49,10 +51,14 @@ export const Navbar = () => {
 
 					<Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", alignItems: "center" }}>
 						<Button
-							component="a"
-							href="#"
+							component={RouterLink}
+							to="/cart"
 							color="inherit"
-							startIcon={<ShoppingBagOutlinedIcon />}
+							startIcon={
+								<Badge badgeContent={cartCount} color="primary" max={99}>
+									<ShoppingBagOutlinedIcon />
+								</Badge>
+							}
 							variant="text"
 						>
 							Cart

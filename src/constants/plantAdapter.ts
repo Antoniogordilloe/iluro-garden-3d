@@ -1,4 +1,5 @@
 import type { PlantCard } from "./plantCards";
+import { toModelUrl } from "./assetUrls";
 
 export type RawPlantData = {
 	name: string;
@@ -11,14 +12,6 @@ export type RawPlantData = {
 	discount?: number;
 };
 
-const MODELS_CDN_BASE_URL =
-	"https://s29mp5al263ezccl.public.blob.vercel-storage.com/models";
-
-const getModelPath = (modelName: string) => {
-	const encodedModelName = encodeURIComponent(modelName);
-	return `${MODELS_CDN_BASE_URL}/${encodedModelName}/${encodedModelName}.glb`;
-};
-
 /**
  * Adapts raw plant data from the service to PlantCard objects
  * Builds remote model URL from the Vercel Blob storage base URL
@@ -29,7 +22,7 @@ export const adaptPlantData = (rawData: RawPlantData): PlantCard => ({
 	water: rawData.water,
 	petSafe: rawData.petSafe,
 	category: rawData.category,
-	modelPath: getModelPath(rawData.modelName),
+	modelPath: toModelUrl(rawData.modelName),
 	price: rawData.price,
 	discount: rawData.discount,
 });

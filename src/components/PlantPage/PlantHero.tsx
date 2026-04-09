@@ -1,6 +1,8 @@
-import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, Paper, Stack, Typography } from "@mui/material";
 import type { PlantCard } from "../../constants/plantCards";
 import { PlantRenderer } from "../PlantRenderer";
+import { useCartStore } from "../../store/cartStore";
+import { toPlantSlug } from "../../utils/plantSlug";
 
 type PlantHeroProps = {
 	plant: PlantCard;
@@ -8,6 +10,12 @@ type PlantHeroProps = {
 };
 
 export const PlantHero = ({ plant, categoryTitle }: PlantHeroProps) => {
+	const plantSlug = toPlantSlug(plant.name);
+	const addToCart = useCartStore((state) => state.addToCart);
+	const isInCart = useCartStore((state) =>
+		state.items.some((item) => item.slug === plantSlug),
+	);
+
 	return (
 		<Box component="section" sx={{ mb: 4, display: "flex", gap: 3, alignItems: "stretch", flexDirection: { xs: "column", lg: "row" } }}>
 			<Box sx={{ width: { xs: "100%", lg: 340 }, flexShrink: 0 }}>
@@ -35,6 +43,11 @@ export const PlantHero = ({ plant, categoryTitle }: PlantHeroProps) => {
 					<Typography variant="body1" sx={{ color: "text.secondary", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: 760 }}>
 						A healthy, happy {plant.name} starts with the right light, watering rhythm, and placement. Use this care profile as your quick guide.
 					</Typography>
+					<Box>
+						<Button variant="contained" color="primary" onClick={() => addToCart(plant)} disabled={isInCart}>
+							{isInCart ? "In cart" : "Add to cart"}
+						</Button>
+					</Box>
 				</Stack>
 			</Paper>
 		</Box>

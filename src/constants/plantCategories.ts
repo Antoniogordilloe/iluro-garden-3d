@@ -1,3 +1,5 @@
+import { CATEGORY_ICON_URLS } from "./assetUrls";
+
 export type PlantCategory = {
 	id: string;
 	title: string;
@@ -14,7 +16,7 @@ export const plantCategories: PlantCategory[] = [
 		description: "Tough plants that thrive in corners and shaded rooms.",
 		highlight: "Easy care",
 		plantCount: 16,
-		image: "/category-icons/low-light.jpeg",
+		image: CATEGORY_ICON_URLS.lowLight,
 	},
 	{
 		id: "pet-safe",
@@ -22,7 +24,7 @@ export const plantCategories: PlantCategory[] = [
 		description: "Beautiful options that are friendlier for cats and dogs.",
 		highlight: "Pet safe",
 		plantCount: 12,
-		image: "/category-icons/pet-safe.jpeg",
+		image: CATEGORY_ICON_URLS.petSafe,
 	},
 	{
 		id: "air-purifying",
@@ -30,7 +32,7 @@ export const plantCategories: PlantCategory[] = [
 		description: "Leafy favorites known for helping freshen indoor spaces.",
 		highlight: "Cleaner rooms",
 		plantCount: 10,
-		image: "/category-icons/air-purifying.jpeg",
+		image: CATEGORY_ICON_URLS.airPurifying,
 	},
 	{
 		id: "hanging",
@@ -38,7 +40,7 @@ export const plantCategories: PlantCategory[] = [
 		description: "Cascading vines perfect for shelves and hanging baskets.",
 		highlight: "Lush vines",
 		plantCount: 9,
-		image: "/category-icons/hanging.jpeg",
+		image: CATEGORY_ICON_URLS.hanging,
 	},
 	{
 		id: "statement",
@@ -46,7 +48,7 @@ export const plantCategories: PlantCategory[] = [
 		description: "Large, sculptural plants that anchor a room instantly.",
 		highlight: "Bold look",
 		plantCount: 7,
-		image: "/category-icons/statement.jpeg",
+		image: CATEGORY_ICON_URLS.statement,
 	},
 	{
 		id: "humidity",
@@ -54,6 +56,6 @@ export const plantCategories: PlantCategory[] = [
 		description: "Ideal for bathrooms and cozy tropical-style zones.",
 		highlight: "Tropical vibe",
 		plantCount: 11,
-		image: "/category-icons/humidity.jpeg",
+		image: CATEGORY_ICON_URLS.humidity,
 	},
 ];

@@ -7,6 +7,7 @@ import { RandomOffers } from "./components/RandomOffers";
 import { CategoryPage } from "./pages/CategoryPage";
 import { PlantPage } from "./pages/PlantPage";
 import { AboutPage } from "./pages/AboutPage";
+import { CartPage } from "./pages/CartPage";
 
 const HomePage = () => {
 	return (
@@ -44,6 +45,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path="/about" element={<AboutPage />} />
+				<Route path="/cart" element={<CartPage />} />
 				<Route path="/category/:categoryId" element={<CategoryPage />} />
 				<Route path="/plant/:plantSlug" element={<PlantPage />} />
 				<Route path="/" element={<HomePage />} />
