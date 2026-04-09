@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { Header } from "./components/Header";
 import { CategoryCarousel } from "./components/CategoryCarousel";
@@ -39,9 +40,20 @@ const HomePage = () => {
 	);
 };
 
+const ScrollToTop = () => {
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+	}, [pathname]);
+
+	return null;
+};
+
 function App() {
 	return (
 		<Box sx={{ minHeight: "100vh", color: "text.primary" }}>
+			<ScrollToTop />
 			<Header />
 			<Routes>
 				<Route path="/about" element={<AboutPage />} />
