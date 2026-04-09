@@ -17,7 +17,9 @@ const modelFiles = import.meta.glob("../assets/models/*/*.glb", {
 }) as Record<string, string>;
 
 const DEFAULT_MODEL_PATH =
-	modelFiles["../assets/models/monstera/monstera.glb"];
+	modelFiles["../assets/models/monstera/monstera.glb"] ??
+	Object.values(modelFiles)[0] ??
+	"";
 
 const getModelPath = (modelName: string) => {
 	const exactPath = `../assets/models/${modelName}/${modelName}.glb`;

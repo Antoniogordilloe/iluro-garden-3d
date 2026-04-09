@@ -142,6 +142,8 @@ export const PlantRenderer = memo(({
 	});
 
 	useEffect(() => {
+		if (!modelPath) return;
+
 		let isCancelled = false;
 
 		const loader = new GLTFLoader();
@@ -192,6 +194,21 @@ export const PlantRenderer = memo(({
 		() => getCameraPosition(cameraPosition, fittedCameraDistance),
 		[cameraPosition, fittedCameraDistance],
 	);
+
+	if (!modelPath) {
+		return (
+			<div
+				className={
+					className ??
+					"grid h-80 w-full place-items-center bg-(--color-surface-muted) text-(--color-text-soft)"
+				}
+			>
+				<div className="px-3 text-center">
+					<p className="m-0">3D model assets are not available.</p>
+				</div>
+			</div>
+		);
+	}
 
 	if (isLoading) {
 		return (
