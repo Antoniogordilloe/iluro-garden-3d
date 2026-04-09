@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Generated garden scene 3">
+  <rect width="900" height="600" fill="#d9f0e6"/>
+  <path d="M0 360 C150 320 260 390 410 350 C560 310 730 375 900 335 L900 600 L0 600 Z" fill="#5a9a78"/>
+  <path d="M0 430 C140 390 300 450 470 410 C640 370 780 435 900 400 L900 600 L0 600 Z" fill="#3f7f5f"/>
+  <rect x="65" y="350" width="130" height="130" rx="8" fill="#8d5d3b"/>
+  <rect x="230" y="330" width="130" height="150" rx="8" fill="#9b6844"/>
+  <rect x="395" y="345" width="130" height="135" rx="8" fill="#835536"/>
+  <rect x="560" y="325" width="130" height="155" rx="8" fill="#966441"/>
+  <rect x="725" y="350" width="130" height="130" rx="8" fill="#8a5a39"/>
+  <path d="M110 350 C120 300 140 290 150 350" fill="none" stroke="#215c3d" stroke-width="12" stroke-linecap="round"/>
+  <path d="M275 330 C285 280 305 270 315 330" fill="none" stroke="#1f5639" stroke-width="12" stroke-linecap="round"/>
+  <path d="M440 345 C450 295 470 285 480 345" fill="none" stroke="#225f40" stroke-width="12" stroke-linecap="round"/>
+  <path d="M605 325 C615 275 635 265 645 325" fill="none" stroke="#1f5639" stroke-width="12" stroke-linecap="round"/>
+  <path d="M770 350 C780 300 800 290 810 350" fill="none" stroke="#215b3d" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="149" cy="311" r="20" fill="#88cf77"/>
+  <circle cx="314" cy="292" r="23" fill="#7dc86d"/>
+  <circle cx="479" cy="307" r="21" fill="#90d681"/>
+  <circle cx="644" cy="287" r="24" fill="#85cb74"/>
+  <circle cx="809" cy="311" r="20" fill="#8fd67f"/>
+</svg>

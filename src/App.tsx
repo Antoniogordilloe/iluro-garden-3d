@@ -1,121 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import { Header } from "./components/Header";
+import { CategoryCarousel } from "./components/CategoryCarousel";
+import { FeaturedPlants } from "./components/FeaturedPlants";
+import { RandomOffers } from "./components/RandomOffers";
+import { CategoryPage } from "./pages/CategoryPage";
+import { PlantPage } from "./pages/PlantPage";
+
+const HomePage = () => {
+	return (
+		<>
+			<CategoryCarousel />
+
+			<main className="mx-auto flex w-full max-w-[100rem] flex-col items-center px-8 py-8 max-md:px-5">
+				<h1 className="mb-3 text-center text-4xl font-extrabold tracking-tight text-(--color-accent-strong) md:text-5xl">
+					Welcome
+				</h1>
+				<h2 className="mb-8 max-w-4xl text-center text-base leading-7 text-(--color-text-soft) md:text-lg">
+					Each plant has a story, a personality, and a place where it thrives. 
+				</h2>
+				<h2 className="mb-6 text-center text-2xl font-bold text-(--color-heading) md:text-3xl">
+				</h2>
+				<FeaturedPlants />
+				<div className="w-full">
+				<RandomOffers />
+				</div>
+			</main>
+		</>
+	);
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+	return (
+		<div className="min-h-screen text-(--color-text-invert)">
+			<Header />
+			<Routes>
+				<Route path="/category/:categoryId" element={<CategoryPage />} />
+				<Route path="/plant/:plantSlug" element={<PlantPage />} />
+				<Route path="/" element={<HomePage />} />
+			</Routes>
+		</div>
+	);
 }
 
-export default App
+export default App;

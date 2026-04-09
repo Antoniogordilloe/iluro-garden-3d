@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Generated garden scene 6">
+  <defs>
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cde3f2"/>
+      <stop offset="100%" stop-color="#f1f9ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#mist)"/>
+  <rect y="360" width="900" height="240" fill="#3f8159"/>
+  <path d="M0 395 C140 335 270 420 430 370 C600 315 760 405 900 350 L900 600 L0 600 Z" fill="#5a9a71"/>
+  <ellipse cx="450" cy="345" rx="190" ry="55" fill="#86b0a0" opacity="0.5"/>
+  <path d="M280 525 C300 420 340 420 360 525" fill="none" stroke="#1f5537" stroke-width="18" stroke-linecap="round"/>
+  <path d="M390 530 C410 430 450 430 470 530" fill="none" stroke="#225e3d" stroke-width="18" stroke-linecap="round"/>
+  <path d="M500 525 C520 425 560 425 580 525" fill="none" stroke="#1f5437" stroke-width="18" stroke-linecap="round"/>
+  <path d="M610 530 C630 435 670 435 690 530" fill="none" stroke="#20583a" stroke-width="16" stroke-linecap="round"/>
+  <ellipse cx="360" cy="430" rx="36" ry="52" fill="#7ec86f"/>
+  <ellipse cx="470" cy="440" rx="36" ry="52" fill="#89d379"/>
+  <ellipse cx="580" cy="432" rx="36" ry="52" fill="#74bf65"/>
+  <ellipse cx="690" cy="445" rx="32" ry="46" fill="#84cf74"/>
+  <circle cx="120" cy="470" r="15" fill="#f6f0a0"/>
+  <circle cx="170" cy="510" r="11" fill="#fff0a3"/>
+  <circle cx="770" cy="480" r="14" fill="#ffe890"/>
+  <circle cx="820" cy="520" r="10" fill="#fff3ab"/>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Generated garden scene 4">
+  <defs>
+    <linearGradient id="dawn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe7be"/>
+      <stop offset="100%" stop-color="#c8e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#dawn)"/>
+  <rect y="370" width="900" height="230" fill="#3a7e56"/>
+  <path d="M0 390 C190 330 350 430 520 370 C680 315 810 380 900 350 L900 600 L0 600 Z" fill="#509268"/>
+  <circle cx="140" cy="125" r="40" fill="#ffd57c"/>
+  <path d="M280 520 C320 365 360 365 400 520" fill="none" stroke="#1e5335" stroke-width="20" stroke-linecap="round"/>
+  <path d="M420 520 C455 380 495 385 530 520" fill="none" stroke="#215a3a" stroke-width="20" stroke-linecap="round"/>
+  <path d="M560 525 C595 390 635 390 670 525" fill="none" stroke="#1f5336" stroke-width="18" stroke-linecap="round"/>
+  <ellipse cx="402" cy="392" rx="55" ry="38" fill="#8bd07a"/>
+  <ellipse cx="528" cy="410" rx="58" ry="40" fill="#95d984"/>
+  <ellipse cx="672" cy="417" rx="52" ry="36" fill="#86cc75"/>
+  <path d="M80 530 C100 450 130 450 150 530" fill="none" stroke="#21583a" stroke-width="14" stroke-linecap="round"/>
+  <path d="M170 525 C190 445 220 445 240 525" fill="none" stroke="#1d5235" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="150" cy="485" r="14" fill="#ffef95"/>
+  <circle cx="240" cy="480" r="13" fill="#ffe988"/>
+</svg>
