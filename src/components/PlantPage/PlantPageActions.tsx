@@ -1,3 +1,4 @@
+import { Stack } from "@mui/material";
 import { RoundActionLink } from "../RoundActionLink";
 
 type PlantPageActionsProps = {
@@ -6,11 +7,11 @@ type PlantPageActionsProps = {
 
 export const PlantPageActions = ({ categoryId }: PlantPageActionsProps) => {
 	return (
-		<div className="mb-4 flex flex-wrap justify-end gap-2">
+		<Stack direction="row" spacing={1.5} useFlexGap sx={{ mb: 3, flexWrap: "wrap", justifyContent: "flex-end" }}>
 			<RoundActionLink to={`/category/${categoryId}`}>
 				Go Back to Category
 			</RoundActionLink>
 			<RoundActionLink to="/">See All Categories</RoundActionLink>
-		</div>
+		</Stack>
 	);
 };

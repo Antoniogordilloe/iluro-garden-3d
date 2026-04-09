@@ -1,69 +1,18 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
 
-:root {
-	--color-bg-top: #121913;
-	--color-bg-bottom: #1c241d;
-	--color-nav: #101611;
-	--color-overlay: rgba(8, 11, 9, 0.46);
-	--color-surface: rgba(10, 14, 18, 0.58);
-	--color-surface-2: rgba(14, 20, 26, 0.5);
-	--color-surface-muted: rgba(20, 27, 34, 0.48);
-	--color-card-border: rgba(255, 255, 255, 0.24);
-	--color-heading: #f8fbff;
-	--color-text: rgba(244, 248, 255, 0.94);
-	--color-text-soft: rgba(231, 238, 248, 0.82);
-	--color-text-invert: #f8fbff;
-	--color-accent: #d6ad67;
-	--color-accent-strong: #e5bc72;
-	--color-pill-bg: rgba(255, 255, 255, 0.14);
-	--color-pill-text: #f8fbff;
-	--color-button-bg: rgba(18, 25, 19, 0.72);
-	--color-button-hover: rgba(18, 25, 19, 0.86);
-	--color-offer-bg: #cda25a;
-	--color-offer-border: rgba(90, 53, 20, 0.25);
-	--color-offer-text: #4c2a10;
-	--color-offer-dismiss-bg: #d9b273;
-	--color-offer-dismiss-hover: #e1be86;
-	--color-offer-dismiss-border: rgba(76, 42, 16, 0.35);
+html {
+	height: 100%;
 }
 
-@layer base {
-	body {
-		margin: 0;
-		font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-		background-color: #0e1411;
-		background-image:
-			radial-gradient(circle at 12% 18%, rgba(172, 112, 62, 0.2) 0%, transparent 36%),
-			radial-gradient(circle at 85% 12%, rgba(87, 134, 157, 0.2) 0%, transparent 34%),
-			radial-gradient(circle at 22% 84%, rgba(95, 132, 96, 0.2) 0%, transparent 35%),
-			radial-gradient(circle at 80% 78%, rgba(52, 79, 109, 0.22) 0%, transparent 38%),
-			repeating-linear-gradient(
-				130deg,
-				rgba(255, 255, 255, 0.03) 0,
-				rgba(255, 255, 255, 0.03) 1px,
-				transparent 1px,
-				transparent 18px
-			),
-			linear-gradient(180deg, var(--color-bg-top) 0%, var(--color-bg-bottom) 100%);
-		background-attachment: fixed;
-		color: var(--color-text-invert);
-	}
+body {
+	margin: 0;
+	min-height: 100%;
+}
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-		letter-spacing: 0;
-	}
+* {
+	box-sizing: border-box;
+}
 
-	* {
-		box-sizing: border-box;
-	}
-
-	#root {
-		min-height: 100svh;
-	}
+#root {
+	min-height: 100vh;
 }

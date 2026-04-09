@@ -1,3 +1,4 @@
+import { Box, Button, Container, Paper, Stack, Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "../components/Card";
 import { RoundActionLink } from "../components/RoundActionLink";
@@ -10,13 +11,19 @@ export const CategoryPage = () => {
 
 	if (!category) {
 		return (
-			<main className="mx-auto w-full max-w-[100rem] p-8 max-md:p-5">
-				<h1 className="mb-2 text-3xl font-bold">Category not found</h1>
-				<p className="mt-0">That category does not exist.</p>
-				<Link className="text-[var(--color-accent-strong)] underline" to="/">
-					Back to all categories
-				</Link>
-			</main>
+			<Container maxWidth={false} sx={{ maxWidth: 1600, py: { xs: 4, md: 6 } }}>
+				<Paper sx={{ p: { xs: 3, md: 4 } }}>
+					<Stack spacing={2} sx={{ alignItems: "flex-start" }}>
+						<Typography variant="h2">Category not found</Typography>
+						<Typography variant="body1" color="text.secondary">
+							That category does not exist.
+						</Typography>
+						<Button component={Link} to="/" variant="contained" color="primary">
+							Back to all categories
+						</Button>
+					</Stack>
+				</Paper>
+			</Container>
 		);
 	}
 
@@ -25,22 +32,34 @@ export const CategoryPage = () => {
 	);
 
 	return (
-		<main className="mx-auto w-full max-w-[100rem] p-8 max-md:p-5">
-			<div className="mb-3 flex justify-end">
+		<Container maxWidth={false} sx={{ maxWidth: 1600, py: { xs: 4, md: 6 } }}>
+			<Stack direction="row" sx={{ mb: 2, justifyContent: "flex-end" }}>
 				<RoundActionLink to="/">See All Categories</RoundActionLink>
-			</div>
-			<h1 className="mb-1 text-4xl font-bold text-[var(--color-accent-strong)]">
+			</Stack>
+			<Typography variant="h1" sx={{ mb: 1, color: "primary.light", fontSize: { xs: "3rem", md: "4.2rem" } }}>
 				{category.title}
-			</h1>
-			<p className="mt-0 mb-6 text-[0.95rem] text-[var(--color-text-invert)]">
+			</Typography>
+			<Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: 800 }}>
 				{category.description}
-			</p>
+			</Typography>
 
-			<section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+			<Box
+				component="section"
+				sx={{
+					display: "grid",
+					gap: 2,
+					gridTemplateColumns: {
+						xs: "1fr",
+						sm: "repeat(2, minmax(0, 1fr))",
+						lg: "repeat(3, minmax(0, 1fr))",
+						xl: "repeat(4, minmax(0, 1fr))",
+					},
+				}}
+			>
 				{filteredCards.map((card) => (
 					<Card key={card.name} card={card} />
 				))}
-			</section>
-		</main>
+			</Box>
+		</Container>
 	);
 };

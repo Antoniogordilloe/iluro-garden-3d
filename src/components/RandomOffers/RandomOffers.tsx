@@ -1,3 +1,5 @@
+import { alpha } from "@mui/material/styles";
+import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
 const generatedGardenImages = [
 	"/generated-gardens/garden-01.svg",
 	"/generated-gardens/garden-02.svg",
@@ -49,42 +51,84 @@ const randomOffers = withGardenImages([
 
 export const RandomOffers = () => {
 	return (
-		<section className="relative overflow-hidden rounded-3xl border border-(--color-card-border) bg-(--color-surface-2) p-5 shadow-[0_10px_32px_rgba(0,0,0,0.24)] backdrop-blur-md md:p-7">
-			<div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(214,173,103,0.32)_0%,rgba(214,173,103,0)_70%)]" />
-			<div className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgba(104,145,128,0.28)_0%,rgba(104,145,128,0)_70%)]" />
+		<Paper sx={{ position: "relative", overflow: "hidden", p: { xs: 3, md: 4 } }}>
+			<Box
+				sx={{
+					pointerEvents: "none",
+					position: "absolute",
+					right: -64,
+					top: -64,
+					height: 192,
+					width: 192,
+					borderRadius: "50%",
+					background: "radial-gradient(circle, rgba(214,173,103,0.32) 0%, rgba(214,173,103,0) 70%)",
+				}}
+			/>
+			<Box
+				sx={{
+					pointerEvents: "none",
+					position: "absolute",
+					left: -80,
+					bottom: 0,
+					height: 208,
+					width: 208,
+					borderRadius: "50%",
+					background: "radial-gradient(circle, rgba(104,145,128,0.28) 0%, rgba(104,145,128,0) 70%)",
+				}}
+			/>
 
-			<div className="relative mb-5 flex flex-wrap items-center justify-between gap-3">
-				<div>
-					<p className="mb-2 inline-flex rounded-full bg-(--color-pill-bg) px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-(--color-pill-text)">
-						Plant Shop Perks
-					</p>
-					<h2 className="text-2xl font-bold text-(--color-heading)">Random Offers</h2>
-				</div>
-				<span className="rounded-full border border-(--color-card-border) bg-(--color-button-bg) px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-(--color-accent)">
-					Limited Time
-				</span>
-			</div>
+			<Stack
+				direction={{ xs: "column", md: "row" }}
+				spacing={2}
+				sx={{ position: "relative", mb: 3.5, justifyContent: "space-between", alignItems: { xs: "flex-start", md: "center" } }}
+			>
+				<Box>
+					<Chip label="Plant Shop Perks" sx={{ mb: 1.5, backgroundColor: "rgba(255,255,255,0.09)" }} />
+					<Typography variant="h3" sx={{ fontSize: { xs: "2rem", md: "2.5rem" } }}>
+						Random Offers
+					</Typography>
+				</Box>
+				<Chip label="Limited Time" variant="outlined" sx={{ borderColor: "divider", color: "primary.main" }} />
+			</Stack>
 
-			<div className="relative grid grid-cols-1 gap-4 xl:grid-cols-3">
+			<Box
+				sx={{
+					position: "relative",
+					display: "grid",
+					gap: 2,
+					gridTemplateColumns: { xs: "1fr", xl: "repeat(3, minmax(0, 1fr))" },
+				}}
+			>
 				{randomOffers.map((offer) => (
-					<article
+					<Box
 						key={offer.title}
-						className="group rounded-2xl border border-(--color-card-border) bg-(--color-surface) p-4 transition-transform duration-300 hover:-translate-y-1"
+						sx={{
+							borderRadius: 4,
+							border: "1px solid",
+							borderColor: alpha("#ffffff", 0.12),
+							backgroundColor: alpha("#0b120f", 0.6),
+							p: 2,
+							transition: "transform 300ms ease, border-color 300ms ease",
+							"&:hover": { transform: "translateY(-4px)", borderColor: "rgba(215,174,99,0.4)" },
+						}}
 					>
-						<img
+						<Box
+							component="img"
 							src={offer.imageUrl}
 							alt={offer.title}
-							className="mb-3 h-36 w-full rounded-xl object-cover"
 							loading="lazy"
+							sx={{ mb: 2, height: 144, width: 1, borderRadius: 3, objectFit: "cover" }}
 						/>
-						<p className="mb-2 inline-flex rounded-full bg-(--color-button-bg) px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-(--color-accent)">
-							{offer.badge}
-						</p>
-						<h3 className="mb-2 text-base font-semibold text-(--color-heading)">{offer.title}</h3>
-						<p className="text-sm leading-6 text-(--color-text-soft)">{offer.description}</p>
-					</article>
+						<Chip label={offer.badge} size="small" sx={{ mb: 1.5, backgroundColor: "rgba(255,255,255,0.06)", color: "primary.main" }} />
+						<Typography variant="h6" sx={{ mb: 1 }}>
+							{offer.title}
+						</Typography>
+						<Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.75 }}>
+							{offer.description}
+						</Typography>
+					</Box>
 				))}
-			</div>
-		</section>
+			</Box>
+		</Paper>
 	);
 };

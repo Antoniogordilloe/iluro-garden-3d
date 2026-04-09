@@ -1,6 +1,15 @@
-import personIcon from "../../assets/person.png";
-import basketIcon from "../../assets/basket.png";
-import { Link } from "react-router-dom";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import {
+	AppBar,
+	Box,
+	Button,
+	Container,
+	Stack,
+	Toolbar,
+	Typography,
+} from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import { SearchBar } from "../SearchBar";
 import { PlantRenderer } from "../PlantRenderer";
 
@@ -9,47 +18,61 @@ const navbarLogoPath =
 
 export const Navbar = () => {
 	return (
-		<nav className="bg-[var(--color-nav)] px-4 py-2 text-[var(--color-text-invert)]">
-			<div className="flex w-full items-center justify-between gap-4 max-md:flex-col max-md:items-stretch">
-				<div className="flex items-center gap-4 max-md:flex-wrap max-md:justify-center">
-					<Link
+		<AppBar position="static">
+			<Container maxWidth={false} sx={{ maxWidth: 1600 }}>
+				<Toolbar disableGutters sx={{ py: 1.5, gap: 2.5, flexWrap: { xs: "wrap", md: "nowrap" } }}>
+					<Stack
+						direction="row"
+						spacing={1.5}
+						component={RouterLink}
 						to="/"
-						className="inline-flex items-center gap-2 text-2xl font-bold text-[var(--color-accent-strong)] no-underline"
+						sx={{ textDecoration: "none", minWidth: 0, mr: { md: 2 }, alignItems: "center" }}
 					>
-							<span className="pointer-events-none h-10 w-10 overflow-hidden rounded-full ">
+						<Box sx={{ width: 44, height: 44, overflow: "hidden", borderRadius: "50%", flexShrink: 0 }}>
 							<PlantRenderer
 								modelPath={navbarLogoPath}
-								className="h-full w-full"
+								sx={{ width: 1, height: 1, minHeight: 0 }}
 								rotationSpeed={0.5}
 								cameraPosition={[0.05, 3, 0.05]}
 								modelScale={2}
 							/>
-						</span>
-						<span>Iluro Garden</span>
-					</Link>
-					<a
-						href="#"
-						className="inline-flex items-center gap-1.5 font-medium text-[var(--color-text-invert)] no-underline transition-colors duration-200 hover:text-[var(--color-accent)]"
-					>
-						<img
-							src={basketIcon}
-							alt="Basket"
-							className="h-[18px] w-[18px] object-contain"
-						/>
-						Cart
-					</a>
-					<Link
-						to="/about"
-						className="inline-flex items-center gap-1.5 font-medium text-[var(--color-text-invert)] no-underline transition-colors duration-200 hover:text-[var(--color-accent)]"
-					>
-						About
-					</Link>
-				</div>
+						</Box>
+						<Box>
+							<Typography variant="overline" sx={{ color: "primary.main", lineHeight: 1.2 }}>
+								Curated Houseplants
+							</Typography>
+							<Typography variant="h5" sx={{ color: "primary.light", lineHeight: 1.1 }}>
+								Iluro Garden
+							</Typography>
+						</Box>
+					</Stack>
 
-				<div className="flex justify-center gap-4">
-					<SearchBar />
-				</div>
-			</div>
-		</nav>
+					<Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", alignItems: "center" }}>
+						<Button
+							component="a"
+							href="#"
+							color="inherit"
+							startIcon={<ShoppingBagOutlinedIcon />}
+							variant="text"
+						>
+							Cart
+						</Button>
+						<Button
+							component={RouterLink}
+							to="/about"
+							color="inherit"
+							startIcon={<InfoOutlinedIcon />}
+							variant="text"
+						>
+							About
+						</Button>
+					</Stack>
+
+					<Box sx={{ flex: 1, minWidth: { xs: "100%", md: 280 }, display: "flex", justifyContent: { xs: "stretch", md: "flex-end" } }}>
+						<SearchBar />
+					</Box>
+				</Toolbar>
+			</Container>
+		</AppBar>
 	);
 };

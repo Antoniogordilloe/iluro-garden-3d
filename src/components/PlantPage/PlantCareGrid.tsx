@@ -1,3 +1,7 @@
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import PetsOutlinedIcon from "@mui/icons-material/PetsOutlined";
+import WaterDropOutlinedIcon from "@mui/icons-material/WaterDropOutlined";
+import { Box, Paper, Stack, Typography } from "@mui/material";
 import type { PlantCard } from "../../constants/plantCards";
 
 type PlantCareGridProps = {
@@ -5,31 +9,36 @@ type PlantCareGridProps = {
 };
 
 const careInfoItems = [
-	{ key: "light", label: "Light", icon: "/icons/light.svg" },
-	{ key: "water", label: "Water", icon: "/icons/water.svg" },
-	{ key: "petSafe", label: "Pet Safe", icon: "/icons/pet-safe.svg" },
+	{ key: "light", label: "Light", icon: <LightModeOutlinedIcon /> },
+	{ key: "water", label: "Water", icon: <WaterDropOutlinedIcon /> },
+	{ key: "petSafe", label: "Pet Safe", icon: <PetsOutlinedIcon /> },
 ] as const;
 
 export const PlantCareGrid = ({ plant }: PlantCareGridProps) => {
 	return (
-		<section className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		<Box
+			component="section"
+			sx={{
+				mb: 5,
+				display: "grid",
+				gap: 2,
+				gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", lg: "repeat(3, minmax(0, 1fr))" },
+			}}
+		>
 			{careInfoItems.map((item) => (
-				<div
+				<Paper
 					key={item.key}
-					className="rounded-xl border border-[var(--color-card-border)] bg-[var(--color-surface)] p-4 text-[var(--color-text)] backdrop-blur-[8px]"
+					sx={{ p: 3 }}
 				>
-					<h3 className="mt-0 mb-2 flex items-center gap-2 text-xl font-semibold text-[var(--color-heading)]">
-						<img
-							src={item.icon}
-							alt=""
-							aria-hidden="true"
-							className="h-5 w-5 shrink-0"
-						/>
-						{item.label}
-					</h3>
-					<p className="mb-0">{plant[item.key]}</p>
-				</div>
+					<Stack direction="row" spacing={1.5} sx={{ mb: 1.5, alignItems: "center" }}>
+						<Box sx={{ color: "primary.main", display: "inline-flex" }}>{item.icon}</Box>
+						<Typography variant="h6">{item.label}</Typography>
+					</Stack>
+					<Typography variant="body1" color="text.secondary">
+						{plant[item.key]}
+					</Typography>
+				</Paper>
 			))}
-		</section>
+		</Box>
 	);
 };

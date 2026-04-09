@@ -1,3 +1,5 @@
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { Autocomplete, Box, TextField, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { plantCards } from "../../constants/plantCards";
@@ -45,57 +47,82 @@ export const SearchBar = () => {
 	}, []);
 
 	return (
-		<div ref={containerRef} className="relative w-full md:w-75">
-			<input
-				type="text"
-				value={query}
-				onChange={(e) => {
-					setQuery(e.target.value);
-					setOpen(true);
+		<Box ref={containerRef} sx={{ width: "100%", maxWidth: 360 }}>
+			<Autocomplete
+				freeSolo
+				onKeyDown={(event) => handleKeyDown(event as React.KeyboardEvent<HTMLInputElement>)}
+				open={open && trimmed.length > 0}
+				onOpen={() => trimmed && setOpen(true)}
+				onClose={() => setOpen(false)}
+				options={suggestions}
+				getOptionLabel={(option) =>
+					typeof option === "string" ? option : option.name
+				}
+				filterOptions={(options) => options}
+				inputValue={query}
+				onInputChange={(_, value, reason) => {
+					setQuery(value);
+					if (reason !== "reset") {
+						setOpen(true);
+					}
 				}}
-				onFocus={() => trimmed && setOpen(true)}
-				onKeyDown={handleKeyDown}
-				placeholder="Search plants..."
-				className="w-full min-w-0 rounded rounded-r-lg border border-(--color-card-border) bg-(--color-surface) px-3 py-2 text-(--color-heading) outline-none ring-0 placeholder:text-(--color-text-soft)"
-			/>
+				onChange={(_, value) => {
+					if (!value) {
+						return;
+					}
 
-			{/* Suggestions dropdown */}
-			{open && trimmed && (
-				<ul className="absolute left-0 top-full z-50 w-full border border-t-0 border-(--color-card-border) bg-(--color-surface) shadow-md">
-					{suggestions.length > 0 ? (
-						suggestions.map((plant) => {
-							const lower = plant.name.toLowerCase();
-							const queryLower = trimmed.toLowerCase();
-							const idx = lower.indexOf(queryLower);
-							return (
-								<li key={plant.name}>
-									<button
-										type="button"
-										onMouseDown={() => handleSelect(plant.name)}
-										className="w-full cursor-pointer px-3 py-2 text-left text-sm text-(--color-heading) transition-colors duration-150 hover:bg-(--color-card-border)"
-									>
-										{idx >= 0 ? (
-											<>
-												{plant.name.slice(0, idx)}
-												<span className="font-semibold text-(--color-accent-strong)">
-													{plant.name.slice(idx, idx + trimmed.length)}
-												</span>
-												{plant.name.slice(idx + trimmed.length)}
-											</>
-										) : (
-											plant.name
-										)}
-									</button>
-								</li>
-							);
-						})
-					) : (
-						<li className="px-3 py-2 text-sm text-(--color-text-soft)">
-							No results
-						</li>
-					)}
-				</ul>
-			)}
-		</div>
+					const selectedName = typeof value === "string" ? value : value.name;
+					handleSelect(selectedName);
+				}}
+				renderOption={(props, option) => {
+					const lower = option.name.toLowerCase();
+					const queryLower = trimmed.toLowerCase();
+					const idx = lower.indexOf(queryLower);
+
+					return (
+						<Box component="li" {...props} key={option.name}>
+							<Typography variant="body2">
+								{idx >= 0 ? (
+									<>
+										{option.name.slice(0, idx)}
+										<Box component="span" sx={{ color: "primary.light", fontWeight: 700 }}>
+											{option.name.slice(idx, idx + trimmed.length)}
+										</Box>
+										{option.name.slice(idx + trimmed.length)}
+									</>
+								) : (
+									option.name
+								)}
+							</Typography>
+						</Box>
+					);
+				}}
+				noOptionsText="No results"
+				sx={{ width: 1 }}
+				renderInput={(params) => (
+					<TextField
+						{...params}
+						placeholder="Search plants..."
+						onFocus={() => trimmed && setOpen(true)}
+						slotProps={{
+							...params.slotProps,
+							input: {
+								...(params.slotProps?.input ?? {}),
+								startAdornment: <SearchRoundedIcon sx={{ color: "primary.main", mr: 1 }} />,
+							},
+							htmlInput: {
+								...(params.slotProps?.htmlInput ?? {}),
+							},
+						}}
+						sx={{
+							"& .MuiOutlinedInput-root": {
+								borderRadius: 999,
+								backgroundColor: "rgba(255,255,255,0.04)",
+							},
+						}}
+					/>
+				)}
+			/>
+		</Box>
 	);
 };

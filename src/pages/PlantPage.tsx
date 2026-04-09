@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { useParams } from "react-router-dom";
 import {
 	PlantCareGrid,
@@ -29,11 +30,11 @@ export const PlantPage = () => {
 		.slice(0, 4);
 
 	return (
-		<main className="mx-auto w-full max-w-[100rem] p-8 max-md:p-5">
+		<Container maxWidth={false} sx={{ maxWidth: 1600, py: { xs: 4, md: 6 } }}>
 			<PlantPageActions categoryId={plant.category} />
 			<PlantHero plant={plant} categoryTitle={categoryTitle} />
 			<PlantCareGrid plant={plant} />
 			<RelatedPlantsSection relatedPlants={relatedPlants} />
-		</main>
+		</Container>
 	);
 };

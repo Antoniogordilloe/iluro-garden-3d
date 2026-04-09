@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
-import { Link, type To } from "react-router-dom";
+import { Button } from "@mui/material";
+import { Link as RouterLink, type To } from "react-router-dom";
 
 interface RoundActionLinkProps {
 	to: To;
@@ -8,11 +9,21 @@ interface RoundActionLinkProps {
 
 export const RoundActionLink = ({ to, children }: RoundActionLinkProps) => {
 	return (
-		<Link
+		<Button
+			component={RouterLink}
 			to={to}
-			className="inline-flex w-fit cursor-pointer items-center justify-center rounded-full border border-[var(--color-card-border)] bg-[var(--color-button-bg)] px-4 py-2 text-[0.9rem] font-semibold text-[var(--color-text-invert)] no-underline transition duration-200 hover:-translate-y-px hover:bg-[var(--color-button-hover)]"
+			variant="outlined"
+			color="inherit"
+			sx={{
+				borderColor: "divider",
+				backgroundColor: "rgba(18, 25, 19, 0.62)",
+				"&:hover": {
+					borderColor: "primary.main",
+					backgroundColor: "rgba(18, 25, 19, 0.86)",
+				},
+			}}
 		>
 			{children}
-		</Link>
+		</Button>
 	);
 };

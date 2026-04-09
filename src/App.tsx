@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import { Header } from "./components/Header";
 import { CategoryCarousel } from "./components/CategoryCarousel";
 import { FeaturedPlants } from "./components/FeaturedPlants";
@@ -9,30 +10,37 @@ import { AboutPage } from "./pages/AboutPage";
 
 const HomePage = () => {
 	return (
-		<>
+		<Box component="section">
 			<CategoryCarousel />
 
-			<main className="mx-auto flex w-full max-w-[100rem] flex-col items-center px-8 py-8 max-md:px-5">
-				<h1 className="mb-3 text-center text-4xl font-extrabold tracking-tight text-(--color-accent-strong) md:text-5xl">
+			<Container maxWidth={false} sx={{ maxWidth: 1600, py: { xs: 5, md: 7 } }}>
+				<Stack spacing={4.5} sx={{ alignItems: "center" }}>
+					<Typography
+						variant="h1"
+						sx={{ color: "primary.light", fontSize: { xs: "3rem", md: "4.5rem" }, textAlign: "center" }}
+					>
 					Welcome
-				</h1>
-				<h2 className="mb-8 max-w-4xl text-center text-base leading-7 text-(--color-text-soft) md:text-lg">
-					Each plant has a story, a personality, and a place where it thrives. 
-				</h2>
-				<h2 className="mb-6 text-center text-2xl font-bold text-(--color-heading) md:text-3xl">
-				</h2>
-				<FeaturedPlants />
-				<div className="w-full">
-				<RandomOffers />
-				</div>
-			</main>
-		</>
+					</Typography>
+					<Typography
+						variant="h5"
+						color="text.secondary"
+						sx={{ maxWidth: 840, lineHeight: 1.7, fontWeight: 500, textAlign: "center" }}
+					>
+						Each plant has a story, a personality, and a place where it thrives.
+					</Typography>
+					<FeaturedPlants />
+					<Box sx={{ width: "100%" }}>
+						<RandomOffers />
+					</Box>
+				</Stack>
+			</Container>
+		</Box>
 	);
 };
 
 function App() {
 	return (
-		<div className="min-h-screen text-(--color-text-invert)">
+		<Box sx={{ minHeight: "100vh", color: "text.primary" }}>
 			<Header />
 			<Routes>
 				<Route path="/about" element={<AboutPage />} />
@@ -40,7 +48,7 @@ function App() {
 				<Route path="/plant/:plantSlug" element={<PlantPage />} />
 				<Route path="/" element={<HomePage />} />
 			</Routes>
-		</div>
+		</Box>
 	);
 }
 

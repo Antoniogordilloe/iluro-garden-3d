@@ -1,3 +1,4 @@
+import { Box, Chip, Paper, Typography } from "@mui/material";
 import { Card } from "../Card";
 import { plantCards } from "../../constants/plantCards";
 
@@ -16,21 +17,33 @@ const featuredPlants = pickRandomPlants(8);
 
 export const FeaturedPlants = () => {
 	return (
-		<section className="mx-auto mb-12 w-full max-w-[100rem] rounded-3xl border border-(--color-card-border) bg-(--color-surface) p-5 backdrop-blur-md md:p-7">
-			<div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-				<div>
-					<p className="mb-2 inline-flex rounded-full bg-(--color-pill-bg) px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-(--color-pill-text)">
-						Featured Picks
-					</p>
-				</div>
+		<Paper sx={{ width: "100%", mb: 1, p: { xs: 3, md: 4 } }}>
+			<Box sx={{ mb: 3.5 }}>
+				<Chip label="Featured Picks" sx={{ mb: 1.5, backgroundColor: "rgba(255,255,255,0.09)" }} />
+				<Typography variant="h3" sx={{ fontSize: { xs: "2rem", md: "2.7rem" } }}>
+					Plants worth bringing home
+				</Typography>
+				<Typography variant="body1" color="text.secondary" sx={{ mt: 1, maxWidth: 760 }}>
+					A rotating set of standout plants, from forgiving starters to sculptural centerpieces.
+				</Typography>
+			</Box>
 
-			</div>
-
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+			<Box
+				sx={{
+					display: "grid",
+					gap: 2,
+					gridTemplateColumns: {
+						xs: "1fr",
+						sm: "repeat(2, minmax(0, 1fr))",
+						lg: "repeat(3, minmax(0, 1fr))",
+						xl: "repeat(4, minmax(0, 1fr))",
+					},
+				}}
+			>
 				{featuredPlants.map((card) => (
 					<Card key={card.name} card={card} />
 				))}
-			</div>
-		</section>
+			</Box>
+		</Paper>
 	);
 };

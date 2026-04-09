@@ -1,3 +1,6 @@
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import { Box, Container, IconButton, Stack, Typography } from "@mui/material";
 import { useRef } from "react";
 import { plantCategories } from "../../constants/plantCategories";
 import { plantCards } from "../../constants/plantCards";
@@ -20,43 +23,70 @@ export const CategoryCarousel = () => {
 	};
 
 	return (
-		<section className="bg-[var(--color-overlay)] px-4 py-4 pb-5 backdrop-blur-[2px]">
-			<div className="relative">
-				<div className="mb-4 flex items-center justify-between gap-3">
-					<h2 className="m-0 text-[1.1rem] font-bold text-[var(--color-text-invert)]">
+		<Box component="section" sx={{ py: { xs: 3, md: 4 }, backgroundColor: "rgba(8, 11, 9, 0.3)", backdropFilter: "blur(4px)" }}>
+			<Container maxWidth={false} sx={{ maxWidth: 1600, position: "relative" }}>
+				<Stack direction="row" sx={{ mb: 2.5, pr: { md: 10 }, alignItems: "center", justifyContent: "space-between" }}>
+					<Typography variant="h4" sx={{ color: "text.primary", fontSize: { xs: "1.8rem", md: "2.3rem" } }}>
 						Find your perfect match!
-					</h2>
-				</div>
+					</Typography>
+				</Stack>
 
-				<div
+				<Box
 					ref={viewportRef}
-					className="overflow-x-auto scroll-smooth pb-2 [scrollbar-color:rgba(214,173,103,0.55)_transparent] [scrollbar-width:thin]"
+					sx={{
+						overflowX: "auto",
+						scrollBehavior: "smooth",
+						pb: 1,
+						scrollbarWidth: "thin",
+						scrollbarColor: "rgba(214,173,103,0.55) transparent",
+					}}
 				>
-					<div className="grid auto-cols-[minmax(400px,1fr)] grid-flow-col gap-4">
+					<Stack direction="row" spacing={2} sx={{ width: "max-content", minWidth: "100%" }}>
 						{plantCategories.map((category) => {
-							const count = plantCards.filter(
-								(p) => p.category === category.id,
-							).length;
+							const count = plantCards.filter((plant) => plant.category === category.id).length;
+
 							return <CategoryCard key={category.id} category={category} count={count} />;
 						})}
-					</div>
-				</div>
+					</Stack>
+				</Box>
 
-				<button
-					type="button"
-					className="absolute left-1.5 top-[calc(50%+0.3rem)] z-20 h-[38px] w-[38px] -translate-y-1/2 cursor-pointer rounded-none border border-[var(--color-card-border)] bg-[var(--color-nav)] text-[1.1rem] font-bold text-[var(--color-accent-strong)] opacity-95 shadow-[0_4px_12px_rgba(0,0,0,0.35)] transition duration-200 hover:scale-105 hover:bg-[var(--color-bg-bottom)] max-[720px]:top-auto max-[720px]:bottom-1.5"
+				<IconButton
 					onClick={() => scrollByAmount(-PAGE_SCROLL)}
+					sx={{
+						position: "absolute",
+						left: { xs: 8, md: 16 },
+						top: { xs: "auto", md: "58%" },
+						bottom: { xs: 8, md: "auto" },
+						transform: { md: "translateY(-50%)" },
+						zIndex: 2,
+						backgroundColor: "rgba(12, 17, 13, 0.92)",
+						border: "1px solid",
+						borderColor: "divider",
+						color: "primary.light",
+						"&:hover": { backgroundColor: "rgba(24, 32, 25, 0.98)" },
+					}}
 				>
-					{"<"}
-				</button>
-				<button
-					type="button"
-					className="absolute right-1.5 top-[calc(50%+0.3rem)] z-20 h-[38px] w-[38px] -translate-y-1/2 cursor-pointer rounded-none border border-[var(--color-card-border)] bg-[var(--color-nav)] text-[1.1rem] font-bold text-[var(--color-accent-strong)] opacity-95 shadow-[0_4px_12px_rgba(0,0,0,0.35)] transition duration-200 hover:scale-105 hover:bg-[var(--color-bg-bottom)] max-[720px]:top-auto max-[720px]:bottom-1.5"
+					<ChevronLeftRoundedIcon />
+				</IconButton>
+				<IconButton
 					onClick={() => scrollByAmount(PAGE_SCROLL)}
+					sx={{
+						position: "absolute",
+						right: { xs: 8, md: 16 },
+						top: { xs: "auto", md: "58%" },
+						bottom: { xs: 8, md: "auto" },
+						transform: { md: "translateY(-50%)" },
+						zIndex: 2,
+						backgroundColor: "rgba(12, 17, 13, 0.92)",
+						border: "1px solid",
+						borderColor: "divider",
+						color: "primary.light",
+						"&:hover": { backgroundColor: "rgba(24, 32, 25, 0.98)" },
+					}}
 				>
-					{">"}
-				</button>
-			</div>
-		</section>
+					<ChevronRightRoundedIcon />
+				</IconButton>
+			</Container>
+		</Box>
 	);
 };

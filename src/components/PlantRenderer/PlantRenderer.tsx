@@ -1,5 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { Box, CircularProgress, Typography } from "@mui/material";
+import type { SxProps, Theme } from "@mui/material/styles";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Box3, Vector3 } from "three";
 import type { Group, Object3D } from "three";
@@ -7,7 +9,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 type PlantRendererProps = {
 	modelPath: string;
-	className?: string;
+	sx?: SxProps<Theme>;
 	rotationSpeed?: number;
 	cameraPosition?: [number, number, number];
 	modelScale?: number;
@@ -97,7 +99,7 @@ const arePlantRendererPropsEqual = (
 	next: PlantRendererProps,
 ) =>
 	prev.modelPath === next.modelPath &&
-	prev.className === next.className &&
+	prev.sx === next.sx &&
 	prev.rotationSpeed === next.rotationSpeed &&
 	prev.modelScale === next.modelScale &&
 	areCameraPositionsEqual(prev.cameraPosition ?? [0, 1, 3], next.cameraPosition ?? [0, 1, 3]);
@@ -129,7 +131,7 @@ const MemoizedPlantModel = memo(PlantModel);
 
 export const PlantRenderer = memo(({
 	modelPath,
-	className,
+	sx,
 	rotationSpeed = 1.2,
 	cameraPosition = [0, 1, 3],
 	modelScale = 1,
@@ -194,49 +196,48 @@ export const PlantRenderer = memo(({
 		() => getCameraPosition(cameraPosition, fittedCameraDistance),
 		[cameraPosition, fittedCameraDistance],
 	);
+	const baseSx: SxProps<Theme> = [
+		{
+			width: "100%",
+			height: 320,
+			minHeight: 220,
+			borderRadius: 3,
+			overflow: "hidden",
+			backgroundColor: "rgba(255,255,255,0.04)",
+		},
+		...(Array.isArray(sx) ? sx : sx ? [sx] : []),
+	];
 
 	if (!modelPath) {
 		return (
-			<div
-				className={
-					className ??
-					"grid h-80 w-full place-items-center bg-(--color-surface-muted) text-(--color-text-soft)"
-				}
-			>
-				<div className="px-3 text-center">
-					<p className="m-0">3D model assets are not available.</p>
-				</div>
-			</div>
+			<Box sx={[...baseSx, { display: "grid", placeItems: "center" }]}>
+				<Typography variant="body2" color="text.secondary" sx={{ px: 2, textAlign: "center" }}>
+					3D model assets are not available.
+				</Typography>
+			</Box>
 		);
 	}
 
 	if (isLoading) {
 		return (
-			<div
-				className={`grid place-items-center ${className ?? "h-80 w-full"} bg-(--color-surface-muted) text-(--color-text-soft)`}
-			>
-				<div
-					className="h-14 w-14 animate-spin rounded-full border-4 border-(--color-text-soft)/30 border-t-(--color-text-soft)"
-					role="status"
-					aria-label="Loading 3D model"
-				/>
-			</div>
+			<Box sx={[...baseSx, { display: "grid", placeItems: "center" }]}>
+				<CircularProgress size={48} thickness={4.5} aria-label="Loading 3D model" />
+			</Box>
 		);
 	}
 
 	if (modelState.error) {
 		return (
-			<div
-				className={
-					className ??
-					"grid h-80 w-full place-items-center bg-(--color-surface-muted) text-(--color-text-soft)"
-				}
-			>
-				<div className="px-3 text-center">
-					<p className="m-0">Unable to load model: {modelPath}</p>
-					<p className="m-0 mt-2 text-xs">{modelState.error}</p>
-				</div>
-			</div>
+			<Box sx={[...baseSx, { display: "grid", placeItems: "center", px: 2 }]}>
+				<Box>
+					<Typography variant="body2" sx={{ textAlign: "center" }}>
+						Unable to load model: {modelPath}
+					</Typography>
+					<Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: "block", textAlign: "center" }}>
+						{modelState.error}
+					</Typography>
+				</Box>
+			</Box>
 		);
 	}
 
@@ -245,7 +246,7 @@ export const PlantRenderer = memo(({
 	}
 
 	return (
-		<div className={className ?? "h-80 w-full"}>
+		<Box sx={baseSx}>
 			<Canvas camera={{ position: resolvedCameraPosition, fov: CAMERA_FOV }}>
 				<ambientLight intensity={0.8} />
 				<directionalLight position={[3, 4, 3]} intensity={1.2} />
@@ -261,6 +262,6 @@ export const PlantRenderer = memo(({
 					maxDistance={fittedCameraDistance * 2}
 				/>
 			</Canvas>
-		</div>
+		</Box>
 	);
 }, arePlantRendererPropsEqual);

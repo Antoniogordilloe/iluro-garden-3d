@@ -1,3 +1,6 @@
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
+import { Alert, Box, Collapse, IconButton } from "@mui/material";
 import { useState } from "react";
 import { Navbar } from "../Navbar";
 
@@ -6,27 +9,33 @@ export const Header = () => {
 	const madeupOffer = "Spring Vault Sale: 2 rare plants + free ceramic pot for 39.90";
 
 	return (
-		<header
-			className="sticky top-0 z-100 block w-full bg-cover bg-center"
-		>
-			{isOfferVisible ? (
-				<div className="border-b border-(--color-offer-border) bg-(--color-offer-bg) px-4 py-1 text-(--color-offer-text) max-md:px-3">
-					<div className="flex min-h-8 w-full items-center justify-between gap-2">
-						<p className="m-0 text-xs font-semibold tracking-[0.01em] md:text-sm">
-							{madeupOffer}
-						</p>
-						<button
-							type="button"
-							onClick={() => setIsOfferVisible(false)}
-							className="inline-flex h-5 w-5 items-center justify-center border border-(--color-offer-dismiss-border) bg-(--color-offer-dismiss-bg) p-0 text-(--color-offer-text) text-[10px] leading-none transition-colors duration-200 hover:bg-(--color-offer-dismiss-hover) focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-(--color-offer-text)"
+		<Box component="header" sx={{ position: "sticky", top: 0, zIndex: (theme) => theme.zIndex.appBar }}>
+			<Collapse in={isOfferVisible}>
+				<Alert
+					icon={<LocalOfferOutlinedIcon fontSize="inherit" />}
+					action={
+						<IconButton
 							aria-label="Close offer banner"
+							color="inherit"
+							size="small"
+							onClick={() => setIsOfferVisible(false)}
 						>
-							X
-						</button>
-					</div>
-				</div>
-			) : null}
+							<CloseRoundedIcon fontSize="small" />
+						</IconButton>
+					}
+					sx={{
+						borderRadius: 0,
+						justifyContent: "center",
+						backgroundColor: "rgba(215, 174, 99, 0.96)",
+						color: "#4c2a10",
+						borderBottom: "1px solid rgba(76, 42, 16, 0.2)",
+						"& .MuiAlert-message": { fontWeight: 700, letterSpacing: "0.01em" },
+					}}
+				>
+					{madeupOffer}
+				</Alert>
+			</Collapse>
 			<Navbar />
-		</header>
+		</Box>
 	);
 };

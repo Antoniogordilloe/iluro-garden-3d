@@ -1,62 +1,59 @@
-import { Link } from "react-router-dom";
+import { Box, Button, Container, Paper, Stack, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 export const AboutPage = () => {
 	return (
-		<main className="mx-auto w-full max-w-[100rem] p-8 max-md:p-5">
-			<section className="mb-10 rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 shadow-[0_10px_30px_rgba(0,0,0,0.12)] max-md:p-6">
-				<p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+		<Container maxWidth={false} sx={{ maxWidth: 1600, py: { xs: 4, md: 6 } }}>
+			<Paper sx={{ mb: 4, p: { xs: 3, md: 5 } }}>
+				<Typography variant="overline" color="primary.main">
 					About Iluro Garden
-				</p>
-				<h1 className="mb-4 text-4xl font-extrabold leading-tight text-[var(--color-accent-strong)] md:text-5xl">
+				</Typography>
+				<Typography variant="h1" sx={{ mb: 2, color: "primary.light", fontSize: { xs: "3rem", md: "4.4rem" } }}>
 					Where Plant Stories Come to Life
-				</h1>
-				<p className="max-w-4xl text-base leading-7 text-[var(--color-text-invert)] md:text-lg">
+				</Typography>
+				<Typography variant="body1" sx={{ maxWidth: 900, lineHeight: 1.9, fontSize: { xs: "1rem", md: "1.08rem" } }}>
 					Iluro Garden is a curated digital greenhouse where each plant is
 					presented with personality, practical care guidance, and visual
 					detail. The project was designed to make plant discovery feel
 					playful while still being useful for everyday plant care.
-				</p>
-			</section>
+				</Typography>
+			</Paper>
 
-			<section className="grid gap-4 md:grid-cols-3">
-				<article className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-muted)] p-6">
-					<h2 className="mb-2 text-xl font-bold text-[var(--color-heading)]">
+			<Box sx={{ display: "grid", gap: 2, gridTemplateColumns: { xs: "1fr", md: "repeat(3, minmax(0, 1fr))" } }}>
+				<Paper sx={{ p: 3 }}>
+					<Typography variant="h5" sx={{ mb: 1.25 }}>
 						Our Mission
-					</h2>
-					<p className="text-sm leading-6 text-[var(--color-text-soft)]">
+					</Typography>
+					<Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
 						Help people build confidence with plants by blending
 						inspiration and clear care tips in one place.
-					</p>
-				</article>
-				<article className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-muted)] p-6">
-					<h2 className="mb-2 text-xl font-bold text-[var(--color-heading)]">
+					</Typography>
+				</Paper>
+				<Paper sx={{ p: 3 }}>
+					<Typography variant="h5" sx={{ mb: 1.25 }}>
 						What You Can Explore
-					</h2>
-					<p className="text-sm leading-6 text-[var(--color-text-soft)]">
+					</Typography>
+					<Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
 						Browse categories, open detailed plant pages, and find related
 						plants to continue your journey.
-					</p>
-				</article>
-				<article className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-muted)] p-6">
-					<h2 className="mb-2 text-xl font-bold text-[var(--color-heading)]">
+					</Typography>
+				</Paper>
+				<Paper sx={{ p: 3 }}>
+					<Typography variant="h5" sx={{ mb: 1.25 }}>
 						Built With Care
-					</h2>
-					<p className="text-sm leading-6 text-[var(--color-text-soft)]">
+					</Typography>
+					<Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
 						The experience uses React, Vite, and reusable UI components to
 						stay fast, modular, and easy to grow.
-					</p>
-				</article>
-			</section>
+					</Typography>
+				</Paper>
+			</Box>
 
-			<div className="mt-10 flex flex-wrap items-center gap-4">
-				<Link
-					to="/"
-					className="rounded-full bg-[var(--color-accent-strong)] px-5 py-2.5 font-semibold text-white no-underline transition-opacity duration-200 hover:opacity-90"
-				>
+			<Stack direction="row" sx={{ mt: 4 }}>
+				<Button component={RouterLink} to="/" variant="contained" color="primary">
 					Back Home
-				</Link>
-
-			</div>
-		</main>
+				</Button>
+			</Stack>
+		</Container>
 	);
 };
