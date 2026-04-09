@@ -98,7 +98,7 @@ export const RandomOffers = () => {
 					<Box
 						key={offer.title}
 						sx={{
-							borderRadius: 4,
+							borderRadius: 2,
 							border: "1px solid",
 							borderColor: alpha("#ffffff", 0.12),
 							backgroundColor: alpha("#0b120f", 0.6),
@@ -112,7 +112,7 @@ export const RandomOffers = () => {
 							src={offer.imageUrl}
 							alt={offer.title}
 							loading="lazy"
-							sx={{ mb: 2, height: 144, width: 1, borderRadius: 3, objectFit: "cover" }}
+							sx={{ mb: 2, height: 144, width: 1, borderRadius: 1.5, objectFit: "cover" }}
 						/>
 						<Chip label={offer.badge} size="small" sx={{ mb: 1.5, backgroundColor: "rgba(255,255,255,0.06)", color: "primary.main" }} />
 						<Typography variant="h6" sx={{ mb: 1 }}>
