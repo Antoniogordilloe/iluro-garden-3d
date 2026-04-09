@@ -11,32 +11,17 @@ export type RawPlantData = {
 	discount?: number;
 };
 
-const modelFiles = import.meta.glob("../assets/models/*/*.glb", {
-	eager: true,
-	import: "default",
-}) as Record<string, string>;
-
-const DEFAULT_MODEL_PATH =
-	modelFiles["../assets/models/monstera/monstera.glb"] ??
-	Object.values(modelFiles)[0] ??
-	"";
+const MODELS_CDN_BASE_URL =
+	"https://s29mp5al263ezccl.public.blob.vercel-storage.com/models";
 
 const getModelPath = (modelName: string) => {
-	const exactPath = `../assets/models/${modelName}/${modelName}.glb`;
-	if (modelFiles[exactPath]) {
-		return modelFiles[exactPath];
-	}
-
-	const folderPrefix = `../assets/models/${modelName}/`;
-	return (
-		Object.entries(modelFiles).find(([path]) => path.startsWith(folderPrefix))?.[1] ??
-		DEFAULT_MODEL_PATH
-	);
+	const encodedModelName = encodeURIComponent(modelName);
+	return `${MODELS_CDN_BASE_URL}/${encodedModelName}/${encodedModelName}.glb`;
 };
 
 /**
  * Adapts raw plant data from the service to PlantCard objects
- * Handles model path resolution based on available assets
+ * Builds remote model URL from the Vercel Blob storage base URL
  */
 export const adaptPlantData = (rawData: RawPlantData): PlantCard => ({
 	name: rawData.name,

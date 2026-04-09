@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import { SearchBar } from "../SearchBar";
 import { PlantRenderer } from "../PlantRenderer";
 
-const navbarLogoPath = new URL(
-	"../../assets/models/logo.glb",
-	import.meta.url,
-).href;
+const navbarLogoPath =
+	"https://s29mp5al263ezccl.public.blob.vercel-storage.com/models/logo.glb";
 
 export const Navbar = () => {
 	return (
