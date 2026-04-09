@@ -8,6 +8,8 @@ export type PlantCard = {
 	petSafe: string;
 	category: string;
 	modelPath: string;
+	price: number;
+	discount?: number;
 };
 
 export const plantCards: PlantCard[] = adaptPlantsData(plantsData);

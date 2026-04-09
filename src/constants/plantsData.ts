@@ -8,6 +8,8 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "statement",
 		modelName: "monstera",
+		price: 42.99,
+		discount: 20,
 	},
 	{
 		name: "Snake Plant",
@@ -16,6 +18,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "low-light",
 		modelName: "snake-plant",
+		price: 24.99,
 	},
 	{
 		name: "Calathea Orbifolia",
@@ -24,6 +27,8 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "humidity",
 		modelName: "calathea-orbifolia",
+		price: 36.5,
+		discount: 15,
 	},
 	{
 		name: "Pothos Neon",
@@ -32,6 +37,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "hanging",
 		modelName: "pothos-neon",
+		price: 21.0,
 	},
 	{
 		name: "Areca Palm",
@@ -40,6 +46,8 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "air-purifying",
 		modelName: "areca-palm",
+		price: 39.99,
+		discount: 10,
 	},
 	{
 		name: "ZZ Plant",
@@ -48,6 +56,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "low-light",
 		modelName: "zz-plant",
+		price: 31.49,
 	},
 	{
 		name: "Spider Plant",
@@ -56,6 +65,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "pet-safe",
 		modelName: "spider-plant",
+		price: 19.99,
 	},
 	{
 		name: "Peace Lily",
@@ -64,6 +74,8 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "low-light",
 		modelName: "peace-lily",
+		price: 28.0,
+		discount: 12,
 	},
 	{
 		name: "Chinese Evergreen",
@@ -72,6 +84,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "low-light",
 		modelName: "chinese-evergreen",
+		price: 29.99,
 	},
 	{
 		name: "Haworthia",
@@ -80,6 +93,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "pet-safe",
 		modelName: "haworthia",
+		price: 14.5,
 	},
 	{
 		name: "Phalaenopsis Orchid",
@@ -88,6 +102,8 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "pet-safe",
 		modelName: "phalaenopsis-orchid",
+		price: 33.75,
+		discount: 18,
 	},
 	{
 		name: "Bamboo Palm",
@@ -96,6 +112,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "air-purifying",
 		modelName: "bamboo-palm",
+		price: 37.2,
 	},
 	{
 		name: "Rubber Plant",
@@ -104,6 +121,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "air-purifying",
 		modelName: "rubber-plant",
+		price: 34.99,
 	},
 	{
 		name: "Aloe Vera",
@@ -112,6 +130,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "air-purifying",
 		modelName: "aloe-vera",
+		price: 16.99,
 	},
 	{
 		name: "Chrysanthemum",
@@ -120,6 +139,8 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "air-purifying",
 		modelName: "chrisanthemum",
+		price: 22.49,
+		discount: 25,
 	},
 	{
 		name: "Eastern Grey",
@@ -128,6 +149,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "hanging",
 		modelName: "eastern-grey",
+		price: 18.99,
 	},
 	{
 		name: "Fiddle Leaf Fig",
@@ -136,6 +158,8 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "No",
 		category: "statement",
 		modelName: "fiddle-leaf-fig",
+		price: 45.0,
+		discount: 8,
 	},
 	{
 		name: "Banana Plant",
@@ -144,6 +168,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "statement",
 		modelName: "banana-plant",
+		price: 41.25,
 	},
 	{
 		name: "Maidenhair Fern",
@@ -152,5 +177,7 @@ export const plantsData: RawPlantData[] = [
 		petSafe: "Yes",
 		category: "humidity",
 		modelName: "maidenhair-fern",
+		price: 27.5,
+		discount: 10,
 	},
 ];

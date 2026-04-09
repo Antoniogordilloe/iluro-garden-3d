@@ -7,6 +7,8 @@ export type RawPlantData = {
 	petSafe: string;
 	category: string;
 	modelName: string;
+	price: number;
+	discount?: number;
 };
 
 const modelFiles = import.meta.glob("../assets/models/*/*.glb", {
@@ -41,6 +43,8 @@ export const adaptPlantData = (rawData: RawPlantData): PlantCard => ({
 	petSafe: rawData.petSafe,
 	category: rawData.category,
 	modelPath: getModelPath(rawData.modelName),
+	price: rawData.price,
+	discount: rawData.discount,
 });
 
 export const adaptPlantsData = (rawDataArray: RawPlantData[]): PlantCard[] =>
